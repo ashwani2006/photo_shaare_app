@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
  const [value, setValue]  = useState({username:"", password:""});
@@ -11,10 +12,11 @@ const Register = () => {
     e.preventDefault();
     try {
          await axios.post("http://localhost:4000/auth/api/register",value,{ withCredentials: true }) 
-         alert("successfully register");
+         toast("successfully register",{autoClose: 1000});
          navigate("/login")
+        
     } catch (error) {
-         alert("error on register")
+         toast.error("error on register",{autoClose: 1000})
     }
  }
   return (

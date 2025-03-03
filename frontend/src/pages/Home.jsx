@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
   const [username, setUsername] = useState('')
@@ -15,7 +16,7 @@ const Home = () => {
           const res = await axios.get("http://localhost:4000/auth/api/me",{withCredentials: true})
           setUsername(res.data.username);
         } catch (error) {
-          alert("username gathering")
+          // alert("username gathering")
         }
       }
 
@@ -30,7 +31,7 @@ const Home = () => {
         setPosts(res.data)
   
      } catch (error) {
-        alert("error on fetching all post ")
+        // alert("error on fetching all post ")
      }
   }
 
@@ -58,10 +59,12 @@ const Home = () => {
   const handleUpload = async ()=>{
     try {
       await axios.post("http://localhost:4000/auth/api/posts",{ image ,caption, username},{withCredentials:true})
-      alert("post uploaded")
+      toast("post uploaded",{autoClose: 800})
       fetchPost();
+      setCaption("");
+      setImage("");
     } catch (error) {
-      alert("error on uploaded post")
+      // alert("error on uploaded post")
     }
   }
 
@@ -70,7 +73,7 @@ const Home = () => {
     <div>
        {/* home area */}
        <div>
-         <h1>Welcome { username === ''? (<span>Guest</span>):(<span>{username}💝</span>)}</h1>
+         <h1>Hello { username === ''? (<span>Guest</span>):(<span>{username}💝</span>)}</h1>
        </div>
         <hr />
 
@@ -86,9 +89,9 @@ const Home = () => {
       </div>
          
       {/* 🖼️ Display All Posts */}
-      <h2>All Posts</h2>
+      <h2></h2>
       {posts.length === 0 ? (
-        <p>No photos yet. Be the first to upload!</p>
+        <h3>Reloading🔄️🔄️🔄️</h3>
       ) : (
         posts.map((post) => (
           <div key={post._id}>

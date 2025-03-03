@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const URI = "mongodb://127.0.0.1:27017/npl4"
+const URI = "mongodb+srv://mydb:amoeba%231@amoeba.zxfbb.mongodb.net/?retryWrites=true&w=majority&appName=Amoeba";
 
 const connectDb = async()=>{
     try {

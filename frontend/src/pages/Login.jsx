@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
   const [value, setValue] = useState({username:"", password:""});
@@ -11,10 +12,10 @@ const Login = () => {
     e.preventDefault();
     try {
         await axios.post("http://localhost:4000/auth/api/login",value,{withCredentials: true});
-        alert("login successfully")
+        toast("login successfully",{autoClose: 1000}) 
         navigate("/home")
     } catch (error) {
-        alert("error || in login")        
+        toast("error || in login",{autoClose: 1000})        
     }
   }
   return (

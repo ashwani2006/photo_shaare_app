@@ -1,14 +1,15 @@
 import React from 'react'
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Logout = () => {
   const handleClick = async(e)=>{
       e.preventDefault()
     try {
         await axios.post("http://localhost:4000/auth/api/logout",{},{withCredentials: true});
-        alert("logout successfully")
+        toast("logout successfully",{autoClose: 1000})
     } catch (error) {
-        alert("error on logout")
+        toast("error on logout")
     }
   }
 
