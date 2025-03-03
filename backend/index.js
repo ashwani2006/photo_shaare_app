@@ -3,8 +3,7 @@ import router from "./routers/auth_routers.js";
 import connectDb from './config/auth_config.js';
 import cookieParser from "cookie-parser";
 import  cors from "cors";
-import dotenv from "dotenv"
-dotenv.config()
+
 
 
 const app = express();
@@ -22,6 +21,6 @@ app.use("/auth/api",router);
 
 
 connectDb();
-app.listen((process.env.PORT), ()=>{
+app.listen((4000), ()=>{
     console.log("server is running");
 })
