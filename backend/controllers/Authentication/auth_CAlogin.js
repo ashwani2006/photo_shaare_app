@@ -18,7 +18,7 @@ const login  = async (req, res) =>{
        const token = jwt.sign({id:userEx._id, username:userEx.username},'your_secret_key');
        
        //send the token to client-side
-       res.cookie("token",token,{httpOnly:true, secure:false});
+       res.cookie("token",token,{httpOnly:true, secure:true,  sameSite: 'None'});
        
         res.status(200).json({msg:"you are login successfully"})
     } catch (error) {
