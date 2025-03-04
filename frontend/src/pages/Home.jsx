@@ -74,7 +74,6 @@ const Home = () => {
 
   return (
     <div>
-       <h1>hello</h1>
        <div>
          <h1>Hello { username === ''? (<span>Guest</span>):(<span>{username}💝</span>)}</h1>
        </div>
