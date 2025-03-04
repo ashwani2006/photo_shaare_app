@@ -8,7 +8,7 @@ import  cors from "cors";
 
 const app = express();
 app.use(cors({
-    origin:"https://photo-shaare-app-3.onrender.com/",
+    origin:"https://photo-shaare-app-3.onrender.com",
     credentials: true,
 }))
 
