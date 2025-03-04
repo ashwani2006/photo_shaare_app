@@ -11,7 +11,7 @@ const Register = () => {
  const handleSubmit = async(e)=>{
     e.preventDefault();
     try {
-         await axios.post("http://localhost:4000/auth/api/register",value,{ withCredentials: true }) 
+         await axios.post("https://photo-shaare-app-2.onrender.com/auth/api/register",value,{ withCredentials: true }) 
          toast("successfully register",{autoClose: 1000});
          navigate("/login")
         

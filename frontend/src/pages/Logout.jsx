@@ -1,24 +1,32 @@
-import React from 'react'
-import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import React from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Logout = () => {
-  const handleClick = async(e)=>{
-      e.preventDefault()
+  const handleClick = async (e) => {
+    e.preventDefault();
+
     try {
-        await axios.post("http://localhost:4000/auth/api/logout",{},{withCredentials: true});
-        toast("logout successfully",{autoClose: 1000})
+      // Backend se logout karte hain
+      await axios.post("https://photo-shaare-app-2.onrender.com/auth/api/logout", {}, { withCredentials: true, headers: { "Content-Type": "application/json" } });
+
+      // Logout hone ke baad cookie delete karte hain
+      document.cookie = 'token=; Max-Age=0; path=/; secure; samesite=strict';  // Cookie ko explicitly delete karna
+
+      toast("Logged out successfully!", { autoClose: 1000 });
+
+      // Optionally, you can redirect to login page or home page
     } catch (error) {
-        toast("error on logout")
+      toast("Error during logout");
     }
-  }
+  };
 
   return (
     <div>
-        <h1>Logout</h1>
-        <button onClick={handleClick} type='submit'>Logout</button>
+      <h1>Logout</h1>
+      <button onClick={handleClick} type='submit'>Logout</button>
     </div>
-  )
-}
+  );
+};
 
-export default Logout
+export default Logout;

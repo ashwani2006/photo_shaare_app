@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import axios from "axios"
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 
 const Home = () => {
   const [username, setUsername] = useState('')
@@ -10,24 +10,27 @@ const Home = () => {
 
 
   // fetching username
+  const fetchUsername = async () => {
+    try {
+      const ress = await axios.get("https://photo-shaare-app-2.onrender.com/auth/api/me", {
+        withCredentials: true,
+        headers: {"Content-Type": "application/json"}
+      });
+      setUsername(ress.data.username);  // This will now work correctly
+    } catch (error) {
+ 
+    }
+  };
+
+  
   useEffect(()=>{
-      const fetchUsername = async()=>{
-        try {
-          const res = await axios.get("http://localhost:4000/auth/api/me",{withCredentials: true})
-          setUsername(res.data.username);
-        } catch (error) {
-          // alert("username gathering")
-        }
-      }
-
-      fetchUsername();
-  },[])
-
+    fetchUsername();
+ },[])
 
   // fetching post on database
   const fetchPost  = async()=>{
      try {
-        const res=  await axios.get("http://localhost:4000/auth/api/gets",{withCredentials: true})
+        const res=  await axios.get("https://photo-shaare-app-2.onrender.com/auth/api/gets",{withCredentials: true})
         setPosts(res.data)
   
      } catch (error) {
@@ -58,7 +61,7 @@ const Home = () => {
   // upload post on database
   const handleUpload = async ()=>{
     try {
-      await axios.post("http://localhost:4000/auth/api/posts",{ image ,caption, username},{withCredentials:true})
+      await axios.post("https://photo-shaare-app-2.onrender.com/auth/api/posts",{ image ,caption, username},{withCredentials:true})
       toast("post uploaded",{autoClose: 800})
       fetchPost();
       setCaption("");
@@ -71,7 +74,7 @@ const Home = () => {
 
   return (
     <div>
-       {/* home area */}
+       <h1>hello</h1>
        <div>
          <h1>Hello { username === ''? (<span>Guest</span>):(<span>{username}💝</span>)}</h1>
        </div>

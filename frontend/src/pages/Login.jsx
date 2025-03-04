@@ -11,7 +11,8 @@ const Login = () => {
   const handleSubmit = async(e)=>{
     e.preventDefault();
     try {
-        await axios.post("http://localhost:4000/auth/api/login",value,{withCredentials: true});
+        await axios.post("https://photo-shaare-app-2.onrender.com/auth/api/login",value,{withCredentials: true, headers: {"Content-Type": "application/json"}});
+        
         toast("login successfully",{autoClose: 1000}) 
         navigate("/home")
     } catch (error) {
