@@ -76,7 +76,7 @@ const Home = () => {
     <div>
        <div>
         
-         <h1>Hello..priti ka bhosda. { username === ''? (<span>Guest</span>):(<span>{username}💝</span>)}</h1>
+         <h1>Hello... { username === ''? (<span>Guest</span>):(<span>{username}💝</span>)}</h1>
        </div>
         <hr />
 
